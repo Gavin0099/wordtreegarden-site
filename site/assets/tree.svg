@@ -1,0 +1,51 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="soilGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a16207" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+    <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#92400e" />
+      <stop offset="50%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#78350f" />
+    </linearGradient>
+    <radialGradient id="treeLeafGrad" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="60%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </radialGradient>
+    <radialGradient id="appleGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fca5a5" />
+      <stop offset="50%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#b91c1c" />
+    </radialGradient>
+  </defs>
+  <ellipse cx="120" cy="216" rx="64" ry="14" fill="url(#soilGrad)" />
+  <ellipse cx="120" cy="214" rx="52" ry="9" fill="#ca8a04" fill-opacity="0.4" />
+  <g id="tree-stage-5">
+    <path d="M 106 214 L 112 115 Q 95 85 75 70 L 88 68 Q 116 95 120 115 Q 124 95 152 68 L 165 70 Q 145 85 128 115 L 134 214 Z" fill="url(#trunkGrad)" />
+    <circle cx="120" cy="85" r="58" fill="url(#treeLeafGrad)" />
+    <circle cx="70" cy="100" r="42" fill="url(#treeLeafGrad)" />
+    <circle cx="170" cy="100" r="42" fill="url(#treeLeafGrad)" />
+    <circle cx="120" cy="45" r="46" fill="url(#treeLeafGrad)" />
+    <!-- 蜜蘋果 🍎 -->
+    <g transform="translate(85, 75)">
+      <circle cx="0" cy="0" r="11" fill="url(#appleGrad)" stroke="#7f1d1d" stroke-width="1.2" />
+      <path d="M 0 -11 Q 3 -16 5 -18" stroke="#78350f" stroke-width="2" fill="none" stroke-linecap="round" />
+      <path d="M 2 -15 Q 8 -18 10 -14 Q 6 -11 2 -15" fill="#4ade80" />
+      <circle cx="-3" cy="-4" r="2.5" fill="#ffffff" fill-opacity="0.7" />
+    </g>
+    <g transform="translate(155, 75)">
+      <circle cx="0" cy="0" r="11" fill="url(#appleGrad)" stroke="#7f1d1d" stroke-width="1.2" />
+      <path d="M 0 -11 Q 3 -16 5 -18" stroke="#78350f" stroke-width="2" fill="none" stroke-linecap="round" />
+      <path d="M 2 -15 Q 8 -18 10 -14 Q 6 -11 2 -15" fill="#4ade80" />
+      <circle cx="-3" cy="-4" r="2.5" fill="#ffffff" fill-opacity="0.7" />
+    </g>
+    <g transform="translate(120, 50)">
+      <circle cx="0" cy="0" r="11" fill="url(#appleGrad)" stroke="#7f1d1d" stroke-width="1.2" />
+      <path d="M 0 -11 Q 3 -16 5 -18" stroke="#78350f" stroke-width="2" fill="none" stroke-linecap="round" />
+      <path d="M 2 -15 Q 8 -18 10 -14 Q 6 -11 2 -15" fill="#4ade80" />
+      <circle cx="-3" cy="-4" r="2.5" fill="#ffffff" fill-opacity="0.7" />
+    </g>
+  </g>
+</svg>

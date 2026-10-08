@@ -1,0 +1,23 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="soilGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a16207" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+    <radialGradient id="treeLeafGrad" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="60%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </radialGradient>
+  </defs>
+  <ellipse cx="120" cy="216" rx="64" ry="14" fill="url(#soilGrad)" />
+  <ellipse cx="120" cy="214" rx="52" ry="9" fill="#ca8a04" fill-opacity="0.4" />
+  <g id="tree-stage-2">
+    <path d="M 120 212 Q 116 160 120 100" stroke="#15803d" stroke-width="6" stroke-linecap="round" fill="none" />
+    <path d="M 118 160 C 85 150, 75 125, 95 120 C 115 115, 118 145, 118 160 Z" fill="url(#treeLeafGrad)" stroke="#15803d" stroke-width="2" />
+    <path d="M 120 140 C 155 130, 165 105, 145 100 C 125 95, 120 125, 120 140 Z" fill="url(#treeLeafGrad)" stroke="#15803d" stroke-width="2" />
+    <ellipse cx="120" cy="85" rx="16" ry="22" fill="url(#treeLeafGrad)" stroke="#15803d" stroke-width="2" />
+    <ellipse cx="106" cy="92" rx="12" ry="16" transform="rotate(-30 106 92)" fill="url(#treeLeafGrad)" />
+    <ellipse cx="134" cy="92" rx="12" ry="16" transform="rotate(30 134 92)" fill="url(#treeLeafGrad)" />
+  </g>
+</svg>

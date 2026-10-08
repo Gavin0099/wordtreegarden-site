@@ -1,0 +1,13 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="appleGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fca5a5" />
+      <stop offset="50%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#b91c1c" />
+    </radialGradient>
+  </defs>
+  <circle cx="24" cy="26" r="16" fill="url(#appleGrad)" stroke="#7f1d1d" stroke-width="1.5" />
+  <path d="M 24 10 Q 28 4 30 2" stroke="#78350f" stroke-width="2.5" fill="none" stroke-linecap="round" />
+  <path d="M 26 5 Q 34 2 36 7 Q 30 11 26 5" fill="#4ade80" stroke="#15803d" stroke-width="1" />
+  <circle cx="19" cy="20" r="3" fill="#ffffff" fill-opacity="0.75" />
+</svg>
