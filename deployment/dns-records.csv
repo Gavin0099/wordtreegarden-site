@@ -1,11 +1,4 @@
-Type,Host,Answer,Required,Note
-A,@,185.199.108.153,yes,GitHub Pages apex
-A,@,185.199.109.153,yes,GitHub Pages apex
-A,@,185.199.110.153,yes,GitHub Pages apex
-A,@,185.199.111.153,yes,GitHub Pages apex
-AAAA,@,2606:50c0:8000::153,optional,GitHub Pages IPv6
-AAAA,@,2606:50c0:8001::153,optional,GitHub Pages IPv6
-AAAA,@,2606:50c0:8002::153,optional,GitHub Pages IPv6
-AAAA,@,2606:50c0:8003::153,optional,GitHub Pages IPv6
-CNAME,www,Gavin0099.github.io,yes,Hostname only - no scheme or repository path
-TXT,_github-pages-challenge-Gavin0099,VALUE_FROM_GITHUB_ACCOUNT_PAGES,yes,Obtain the actual value from GitHub - do not import this placeholder
+Type,Host,Answer,TTL,Note
+ALIAS,@,gavin0099.github.io,600,Configured apex - leave Host blank in Porkbun; do not add A or AAAA alongside this ALIAS
+CNAME,www,gavin0099.github.io,600,Configured www - hostname only; no scheme or repository path
+TXT,_github-pages-challenge-Gavin0099,ecf1448992ef09d0eb4f2e59b83272,600,Verified GitHub ownership - retain this record
