@@ -1,6 +1,8 @@
 # 字樹花園獨立介紹頁
 
-字樹花園的独立靜態介紹頁，建立於 2026-10-08。網站內容位於 `site/`，使用 GitHub Pages 發布。
+字樹花園的獨立靜態介紹頁，建立於 2026-10-08。網站內容位於 `site/`，使用 GitHub Pages 發布。
+
+[開啟介紹頁](https://gavin0099.github.io/wordtreegarden-site/)
 
 使用 `Gavin0099/wordtreegarden-site` 作為獨立公開儲存庫。本資料夾位於現有專案旁邊，不會被現有練習網站的部署流程載入。
 
