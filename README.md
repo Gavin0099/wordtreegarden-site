@@ -2,7 +2,7 @@
 
 字樹花園的獨立靜態介紹頁，建立於 2026-10-08。網站內容位於 `site/`，使用 GitHub Pages 發布。
 
-[開啟介紹頁](https://gavin0099.github.io/wordtreegarden-site/)
+[開啟介紹頁](https://wordtreegarden.com/)
 
 使用 `Gavin0099/wordtreegarden-site` 作為獨立公開儲存庫。本資料夾位於現有專案旁邊，不會被現有練習網站的部署流程載入。
 
@@ -21,14 +21,14 @@ python -m http.server 8765 --bind 127.0.0.1 --directory site
 - `.github/workflows/pages.yml`：手動執行的 GitHub Pages 工作流程，僅上傳 `site/`。
 - `SETUP.md`：購買、網域驗證、DNS、HTTPS、轉寄與驗收步驟。
 - `deployment/CNAME`：未啟用的網域名稱備稿。這個 Actions 發布方式以 Pages 設定中的 Custom domain 為準，CNAME 檔不能取代該設定。
-- `deployment/dns-records.csv`：人工設定參照表；TXT 值為待取得欄位，不能直接批次匯入。
+- `deployment/dns-records.csv`：本次網站 DNS 設定參照表；不包含既有郵件與憑證記錄，不可用它整批取代 DNS。
 - `artifacts/`：本機驗證與截圖，不包含在 Pages 上傳範圍。
 
-## 發布前內容檢查
+## 正式網址與內容檢查
 
-1. 本頁聯絡信箱先沿用既有公開支援頁的 `reiko0099@gmail.com`。`hello@wordtreegarden.com` 收信測試通過後，才替換兩個 mailto 連結。
-2. canonical 與 `og:url` 目前使用預計的獨立 Pages 網址 `https://gavin0099.github.io/wordtreegarden-site/`。儲存庫名稱若改動，兩處要同步更新。
-3. 網域購買、驗證與 HTTPS 完成後，將兩處網址換成 `https://wordtreegarden.com/`。
+1. 本頁聯絡信箱為 `hello@wordtreegarden.com`，免費轉寄至 `reiko0099@gmail.com`。使用者於 2026-10-08 回報測試信已在 Gmail 垃圾信箱收到，兩個 mailto 連結已更新。
+2. 網域已在 GitHub 個人帳號驗證，並綁定此獨立儲存庫；已開啟 Enforce HTTPS。
+3. canonical 與 `og:url` 使用 `https://wordtreegarden.com/`。網站 DNS 使用根網域 ALIAS 與 `www` CNAME，均指向 `gavin0099.github.io`。
 4. 沒有放置尚未確認的 App Store 或 TestFlight 下載連結。取得有效的公開連結並確認可用後再補。
 5. 練習示意已明確標註，沒有將概念圖稱為 App 截圖。iOS 和網頁版的差異也已說明。
 6. 隱私與支援直接連到既有網址，不改 App Store 上的既有連結。

@@ -1,6 +1,8 @@
 # wordtreegarden.com 購買與設定步驟
 
-查核日期為 2026-10-08。這是購買、發布與網域設定操作手冊；各階段執行結果須依實際驗證判定。當次價格、續約價格與帳號權限需以實際畫面為準。
+查核日期為 2026-10-08。網域已購買、GitHub 所有權驗證已通過，介紹頁已綁定正式網域。包含根網域與 `www` 的 HTTPS 憑證已核准，Enforce HTTPS 已啟用；四個 HTTP/HTTPS 入口均驗證最終導向 `https://wordtreegarden.com/` 並回傳 HTTP 200。使用者已回報測試信到達 Gmail 垃圾信箱，網站聯絡地址已更新為 `hello@wordtreegarden.com`。WHOIS 隱私已確認啟用；Porkbun 2FA 尚未開啟，使用者決定暫緩。
+
+以下保留完整操作步驟，當次價格、續約價格與帳號權限需以實際畫面為準。
 
 ## 1. 購買與帳號
 
@@ -28,7 +30,7 @@ GitHub 會顯示需建立的 TXT 記錄。Porkbun DNS 的 Host 預期為 `_githu
 
 ## 4. 先綁定新網站，再修改網站 DNS
 
-只在新儲存庫 `wordtreegarden-site` 的 Settings → Pages → Custom domain 填入 `wordtreegarden.com` 並儲存，接著才設定指向 GitHub 的 A/AAAA/CNAME。不要把網域綁在現有練習儲存庫，避免改變它的網址與隱私、支援入口。
+只在新儲存庫 `wordtreegarden-site` 的 Settings → Pages → Custom domain 填入 `wordtreegarden.com` 並儲存，接著才設定指向 GitHub 的 ALIAS/CNAME，或下方替代的 A/AAAA 記錄。不要把網域綁在現有練習儲存庫，避免改變它的網址與隱私、支援入口。
 
 本包使用 GitHub Actions 發布，GitHub 官方說明此模式不靠 CNAME 檔啟用網域。`deployment/CNAME` 只是名稱備稿，不能當成已綁定證據。
 
@@ -36,14 +38,26 @@ GitHub 會顯示需建立的 TXT 記錄。Porkbun DNS 的 Host 預期為 `_githu
 
 ## 5. Porkbun DNS 記錄
 
-先記錄目前 DNS。移除與根網域或 `www` 衝突的網站停放 A、AAAA、CNAME 或 ALIAS 記錄；不要整批清空 DNS，也不要刪除郵件轉寄所需的 MX、郵件 TXT 或 GitHub 驗證 TXT。Porkbun 根網域 Host 留空；`@` 表示相同的根網域概念。
+先記錄目前 DNS。將與根網域或 `www` 衝突的網站停放記錄改成下表；不要整批清空 DNS，也不要刪除郵件轉寄所需的 MX、郵件 TXT、既有憑證 TXT 或 GitHub 驗證 TXT。Porkbun 根網域 Host 留空；`@` 表示相同的根網域概念。
+
+本次保留並修改原本的根網域 ALIAS，將停放頁 `uixie.porkbun.com` 改為 `gavin0099.github.io`；原本 wildcard CNAME 的 Host 改為 `www`，Answer 同樣改為 GitHub 主機。GitHub 官方支援 ALIAS 作為根網域設定，因此不需要再新增 A/AAAA 與它並用。公開 DNS 查詢會回傳 GitHub 的 IPv4 與 IPv6 位址。
 
 | Type | Host | Answer | 需求 |
 | --- | --- | --- | --- |
-| A | 空白（根網域） | 185.199.108.153 | 必要 |
-| A | 空白（根網域） | 185.199.109.153 | 必要 |
-| A | 空白（根網域） | 185.199.110.153 | 必要 |
-| A | 空白（根網域） | 185.199.111.153 | 必要 |
+| ALIAS | 空白（根網域） | gavin0099.github.io | 本次使用 |
+| CNAME | www | gavin0099.github.io | 本次使用 |
+| TXT | _github-pages-challenge-Gavin0099 | ecf1448992ef09d0eb4f2e59b83272 | 本次驗證值，持續保留 |
+
+上述記錄 TTL 為 600 秒。既有 `fwd1.porkbun.com`、`fwd2.porkbun.com` MX、SPF TXT 與 `_acme-challenge` TXT 均保留。
+
+若未來改用 A/AAAA，先停用根網域 ALIAS，再使用下面的替代組合；不要兩種方式混用。
+
+| Type | Host | Answer | 需求 |
+| --- | --- | --- | --- |
+| A | 空白（根網域） | 185.199.108.153 | 替代組合必要 |
+| A | 空白（根網域） | 185.199.109.153 | 替代組合必要 |
+| A | 空白（根網域） | 185.199.110.153 | 替代組合必要 |
+| A | 空白（根網域） | 185.199.111.153 | 替代組合必要 |
 | AAAA | 空白（根網域） | 2606:50c0:8000::153 | 可選 |
 | AAAA | 空白（根網域） | 2606:50c0:8001::153 | 可選 |
 | AAAA | 空白（根網域） | 2606:50c0:8002::153 | 可選 |
@@ -51,7 +65,7 @@ GitHub 會顯示需建立的 TXT 記錄。Porkbun DNS 的 Host 預期為 `_githu
 | CNAME | www | Gavin0099.github.io | 必要 |
 | TXT | GitHub 提供的驗證 Host | GitHub 畫面提供的實際值 | 必要並持續保留 |
 
-`www` 的 Answer 只能是主機名稱，不加 `https://`、儲存庫名稱、斜線或 `*.pages.github.io`。不要新增 wildcard `*` 指向 GitHub。四個 A 記錄都保留；若加 IPv6，四個 AAAA 也一起加。DNS 傳播可能需要最多 24 小時。
+`www` 的 Answer 只能是主機名稱，不加 `https://`、儲存庫名稱、斜線或 `*.pages.github.io`。不要新增 wildcard `*` 指向 GitHub。使用替代組合時，四個 A 記錄都要保留；若加 IPv6，四個 AAAA 也一起加。DNS 傳播可能需要最多 24 小時。
 
 官方來源：[GitHub 網域與 DNS](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)、[Porkbun DNS 管理](https://kb.porkbun.com/article/68-how-to-edit-dns-records)、[Porkbun 根網域 Host 留空](https://kb.porkbun.com/article/231-how-to-add-dns-records-on-porkbun)。
 
@@ -59,17 +73,17 @@ GitHub 會顯示需建立的 TXT 記錄。Porkbun DNS 的 Host 預期為 `_githu
 
 回到新儲存庫 Pages 確認 DNS check 通過，等待 HTTPS 憑證可用，再開啟 Enforce HTTPS。此選項可用也可能需最多 24 小時。
 
-確認根網域載入正確介紹頁，`www` 自動導向 `https://wordtreegarden.com/`，再將 `site/index.html` 中 canonical 和 `og:url` 兩處由預計的 Pages 網址改為 `https://wordtreegarden.com/`，重新發布。
+確認根網域 HTTPS 載入正確介紹頁，再將 `site/index.html` 中 canonical 和 `og:url` 兩處改為 `https://wordtreegarden.com/`，重新發布。另行確認 `www` 的 HTTPS 憑證與自動導向，不能只用 DNS 正確來宣稱 HTTPS 可用。
 
 官方來源：[GitHub Pages HTTPS](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https)。
 
 ## 7. 免費信箱轉寄
 
-Porkbun Domain Management → 網域右側 EMAIL 圖示 → Porkbun Email Forwarding。建立 `hello`，Destination 填你的 Gmail。避免改用付費 hosted email，除非另有明確需求。
+Porkbun Domain Management → 網域右側 EMAIL 圖示 → Porkbun Email Forwarding。已建立 `hello@wordtreegarden.com` → `reiko0099@gmail.com`，Current Forwards 清單已顯示此記錄。只使用免費轉寄。
 
 使用與收件 Gmail **不同的信箱**，人工寄信到 `hello@wordtreegarden.com`，確認收件匣或垃圾信件中確實收到。公開 MX/TXT 查詢只能證明 DNS 狀態，不能證明信件送達。
 
-免費轉寄提供收信；從 Gmail 回覆會顯示 Gmail 地址，不會自動以 `hello@wordtreegarden.com` 寄出。若未測試成功，介紹頁繼續使用既有 Gmail。成功後再替換兩個 `mailto:reiko0099@gmail.com`。
+免費轉寄提供收信；從 Gmail 回覆會顯示 Gmail 地址，不會自動以 `hello@wordtreegarden.com` 寄出。使用者已於 2026-10-08 確認測試信到達 Gmail 垃圾信箱，兩個 mailto 連結已換成 `hello@wordtreegarden.com`。送達證據來自使用者回報，未由自動測試登入收件匣驗證。可將測試信標記為非垃圾郵件。
 
 官方來源：[Porkbun 免費轉寄與測試](https://kb.porkbun.com/article/10-how-to-set-up-email-forwarding-service)。
 
@@ -87,13 +101,13 @@ Resolve-DnsName wordtreegarden.com -Type MX -Server 1.1.1.1
 
 未設定可選 AAAA 時，沒有 AAAA 回答是預期狀態。查詢結果須與實際設定比對，不能只看指令是否執行。
 
-- [ ] 根網域使用 HTTPS 顯示字樹花園介紹頁，沒有憑證警告。
-- [ ] `www` 的最終網址為 `https://wordtreegarden.com/`。
-- [ ] 新網站手機版、FAQ、聯絡、隱私與支援連結可用。
-- [ ] 原本 `https://gavin0099.github.io/english-vocab-trainer/` 仍顯示練習程式，沒有被導向介紹頁。
-- [ ] 原本的 `privacy.html` 與 `support.html` 仍使用既有網址，沒有被導向新網域。
-- [ ] 新儲存庫名稱、Custom domain、DNS check 和 Enforce HTTPS 設定皆記錄。
-- [ ] GitHub 個人帳號的 Verified domain 狀態成功，TXT 持續保留。
-- [ ] 不同寄件信箱的轉寄測試確實收到後，才更換聯絡信箱。
+- [x] 根網域使用 HTTPS 顯示字樹花園介紹頁，正常憑證驗證通過。
+- [x] `www` 的最終網址為 `https://wordtreegarden.com/`。
+- [x] 新網站手機版、FAQ、聯絡、隱私與支援連結可用。
+- [x] 原本 `https://gavin0099.github.io/english-vocab-trainer/` 回傳 HTTP 200，維持既有網址。
+- [x] 原本的 `privacy.html` 與 `support.html` 回傳 HTTP 200，沒有被導向新網域。
+- [x] 新儲存庫名稱、Custom domain、DNS check 和 Enforce HTTPS 設定皆記錄。
+- [x] GitHub 個人帳號的 Verified domain 狀態成功，TXT 持續保留。
+- [x] 使用者確認轉寄測試已收到後，才更換聯絡信箱。
 
 若網站 DNS 有問題，先核對新儲存庫的 Custom domain 與 DNS 快照，修正衝突記錄。不要透過改動舊練習儲存庫來排除新網站問題。
